@@ -5,759 +5,636 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Jerald June Asis | UI/UX Designer Portfolio</title>
   <!-- Google Fonts + Font Awesome 6 -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --bg: #0A0A0A;
+      --text: #F4F4F5;
+      --text-muted: #71717A;
+      --border: rgba(255, 255, 255, 0.07);
+      --accent: #E5A93C; 
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #000000;
-      color: #ffffff;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      letter-spacing: -0.01em;
       scroll-behavior: smooth;
-      line-height: 1.5;
-      position: relative;
-    }
-
-    /* GLOBAL PARTICLE CANVAS - gold and white particles */
-    #global-particle-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-      z-index: 0;
-      pointer-events: none;
-      background: #000000;
-    }
-
-    /* All content sits above canvas */
-    .navbar, section, footer {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Section backgrounds - dark with slight transparency */
-    section {
-      scroll-margin-top: 85px;
-      padding: 4rem 1.5rem;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(3px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .hero {
-      background: transparent;
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
+      padding: 0 2rem;
     }
 
-    .section-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      position: relative;
-      display: inline-block;
-      background: linear-gradient(135deg, #ffffff, #d4af37);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .section-title:after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 65px;
-      height: 4px;
-      background: linear-gradient(90deg, #d4af37, #ffffff);
-      border-radius: 4px;
-    }
-
-    /* NAVBAR */
+    /* --- NAVIGATION --- */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
       z-index: 1000;
-      padding: 0.9rem 1.5rem;
     }
 
     .nav-container {
-      max-width: 1280px;
-      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      height: 70px;
     }
 
     .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #ffffff, #d4af37);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -0.5px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
     .nav-links {
       display: flex;
-      gap: 1.8rem;
+      gap: 2.5rem;
       list-style: none;
     }
 
-    .nav-links li a {
+    .nav-links a {
       text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
       font-weight: 500;
-      color: #e0e0e0;
-      transition: 0.25s;
-      font-size: 0.95rem;
+      transition: color 0.2s ease;
     }
 
-    .nav-links li a:hover {
-      color: #d4af37;
-      text-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+    .nav-links a:hover {
+      color: var(--text);
     }
 
     .menu-btn {
       display: none;
-      font-size: 1.6rem;
-      color: #d4af37;
-      cursor: pointer;
       background: none;
       border: none;
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
     }
 
-    /* HERO - profile picture shifted left (30px) */
-    .hero-row {
-      display: flex;
-      flex-wrap: wrap;
+    /* --- HERO --- */
+    .hero {
+      padding: 12rem 0 6rem 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 4rem;
       align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
     }
+
+    .hero-text h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 3rem;
+    }
+
     .hero-image {
-      flex: 1;
-      min-width: 200px;
-      text-align: center;
-      transform: translateX(-30px);
+      display: flex;
+      justify-content: flex-end;
     }
-    .hero-profile-img {
-      width: 260px;
-      height: 340px;
-      margin: 0 auto;
-      border-radius: 24px;
+
+    .profile-frame {
+      width: 100%;
+      max-width: 300px;
+      height: 380px;
+      border-radius: 12px;
       overflow: hidden;
-      border: 3px solid #d4af37;
-      background: #1a1a1a;
-      box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+      border: 1px solid var(--border);
+      background: #141414;
     }
-    .hero-profile-img img {
+
+    .profile-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
-    .hero-text {
-      flex: 1.5;
-      text-align: left;
-      min-width: 280px;
-    }
-    .hero-text h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      background: linear-gradient(to right, #ffffff, #e0e0e0);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 0.5rem;
-      line-height: 1.2;
-      white-space: nowrap;
-    }
-    .hero-text .highlight {
-      background: linear-gradient(135deg, #d4af37, #f5e6b0);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .hero-text .subtitle {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: #d4af37;
-    }
-    .hero-text p {
-      font-size: 1.1rem;
-      color: #cccccc;
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-      max-width: 500px;
-    }
+
+    /* --- BUTTONS --- */
     .btn-group {
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
     }
+
     .btn {
-      padding: 0.7rem 1.5rem;
-      border-radius: 40px;
-      font-weight: 600;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
       text-decoration: none;
-      transition: 0.25s;
-      font-size: 0.9rem;
-      display: inline-block;
-      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
+
     .btn-primary {
-      background: linear-gradient(95deg, #d4af37, #b8942e);
-      color: #000000;
-      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+      background-color: var(--text);
+      color: var(--bg);
     }
+
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 22px rgba(212, 175, 55, 0.5);
-    }
-    .btn-outline {
-      border: 1.5px solid #d4af37;
-      background: transparent;
-      color: #d4af37;
-    }
-    .btn-outline:hover {
-      background: rgba(212, 175, 55, 0.15);
-      transform: translateY(-3px);
+      background-color: #ffffff;
     }
 
-    /* Services & Projects & Skills */
-    .services-grid, .projects-grid, .skills-grid {
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    /* --- SECTIONS --- */
+    section {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 4rem;
+      font-weight: 600;
+    }
+
+    /* --- SERVICES & SKILLS LISTS --- */
+    .editorial-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-      margin-top: 1rem;
-    }
-    .service-card, .project-card, .skill-card {
-      background: rgba(20, 20, 20, 0.8);
-      backdrop-filter: blur(6px);
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      transition: 0.3s;
-    }
-    .service-card:hover, .project-card:hover, .skill-card:hover {
-      border-color: #d4af37;
-      transform: translateY(-5px);
-      box-shadow: 0 12px 28px rgba(212, 175, 55, 0.2);
-    }
-    .service-card h3, .project-card h3, .skill-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.7rem;
-      color: #d4af37;
-    }
-    .project-card p, .skill-card p {
-      color: #cccccc;
-      margin-bottom: 0.8rem;
-      font-size: 0.9rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem 3rem;
     }
 
-    /* Skill image container - no crop */
-    .skill-img {
-      width: 100%;
-      margin-bottom: 1rem;
-      border-radius: 0.8rem;
-      overflow: hidden;
-      background: #111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 140px;
-      border: 1px solid rgba(212, 175, 55, 0.4);
+    .editorial-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
     }
-    .skill-img img {
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
+
+    .editorial-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Tool Icons / Images Row */
+    .tools-display {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 2rem;
+    }
+
+    .tool-item {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .tool-item img {
+      max-height: 32px;
+      max-width: 32px;
       object-fit: contain;
+      filter: grayscale(100%) brightness(150%);
+      opacity: 0.6;
+    }
+
+    .tool-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* --- WORK / PROJECTS --- */
+    .work-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .project-row.reverse {
+      grid-template-columns: 1fr 1.2fr;
+    }
+
+    .project-img-wrapper {
+      background: #141416;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .project-img-wrapper img {
+      width: 100%;
+      height: auto;
       display: block;
     }
 
-    /* Project images - no cropping */
-    .project-img {
-      width: 100%;
+    .project-info h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
       margin-bottom: 1rem;
-      border-radius: 0.8rem;
-      overflow: hidden;
-      background: #111827;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      letter-spacing: -0.02em;
     }
-    .project-img img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
+
+    .project-info p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
     }
-    .tech-stack {
+
+    .tags {
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
-      margin-top: 0.8rem;
-    }
-    .tech-stack span {
-      background: rgba(30, 30, 30, 0.9);
-      padding: 0.2rem 0.7rem;
-      border-radius: 30px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: #d4af37;
     }
 
-    /* Education */
-    .edu-timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-    .edu-item {
-      background: rgba(20, 20, 20, 0.8);
-      backdrop-filter: blur(4px);
-      border-left: 4px solid #d4af37;
-      padding: 1.2rem 1.5rem;
-      border-radius: 1rem;
-    }
-    .edu-item h3 {
-      font-size: 1.2rem;
-      color: #d4af37;
-    }
-    .edu-date {
-      color: #f5e6b0;
-      font-weight: 500;
-      font-size: 0.85rem;
-      margin: 0.3rem 0;
+    .tags span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
     }
 
-    /* About Me */
-    .about-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      background: rgba(20, 20, 20, 0.8);
-      backdrop-filter: blur(4px);
-      padding: 1.8rem;
-      border-radius: 1.5rem;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-    }
-    .about-text {
-      flex: 2;
-    }
-    .about-text p {
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-      color: #dddddd;
-    }
-    .personal-info {
-      margin: 1.5rem 0;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(212, 175, 55, 0.3);
-    }
-    .personal-info p {
-      margin: 0.5rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .personal-info i {
-      width: 24px;
-      color: #d4af37;
-    }
-    .about-stats {
-      flex: 1;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 1.2rem;
-      padding: 1.2rem;
-    }
-    .stat {
-      margin: 0.8rem 0;
-    }
-    .stat span:first-child {
-      color: #ffffff;
-    }
-    .progress-bar {
-      background: #2a2a2a;
-      border-radius: 20px;
-      height: 6px;
-      margin-top: 6px;
-    }
-    .progress {
-      background: linear-gradient(90deg, #d4af37, #f5e6b0);
-      height: 6px;
-      border-radius: 20px;
-    }
-    .about-social {
-      display: flex;
-      gap: 1.2rem;
-      margin-top: 1rem;
-    }
-    .about-social a {
-      color: #cccccc;
-      font-size: 1.3rem;
-      transition: 0.2s;
-    }
-    .about-social a:hover {
-      color: #d4af37;
-      transform: translateY(-3px);
+    /* --- ABOUT & STATS --- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 4rem;
     }
 
-    /* Contact - direct LinkedIn redirect */
-    .contact-wrapper {
+    .about-bio p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      background: rgba(20, 20, 20, 0.8);
-      backdrop-filter: blur(4px);
-      border-radius: 1.5rem;
-      padding: 1.8rem;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
     }
-    .contact-info {
-      flex: 1;
-    }
-    .contact-info h3 {
-      font-size: 1.5rem;
-      color: #d4af37;
-    }
-    .contact-detail {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin: 1.2rem 0;
-      flex-wrap: wrap;
-    }
-    .contact-detail i {
-      font-size: 1.2rem;
-      color: #d4af37;
-      width: 28px;
-    }
-    .contact-detail a, .contact-detail span {
-      color: #ffffff;
+
+    .social-links a {
+      color: var(--text-muted);
       text-decoration: none;
       font-size: 0.9rem;
-      word-break: break-all;
+      transition: color 0.2s ease;
     }
-    .contact-action {
-      flex: 1;
+
+    .social-links a:hover {
+      color: var(--text);
+    }
+
+    .skills-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .bar-bg {
+      background: var(--border);
+      height: 2px;
+      width: 100%;
+    }
+
+    .bar-fill {
+      background: var(--text);
+      height: 100%;
+    }
+
+    /* --- CONTACT --- */
+    .contact-block {
+      max-width: 600px;
+      margin: 0 auto;
       text-align: center;
     }
-    .linkedin-message-btn {
-      background: linear-gradient(95deg, #d4af37, #b8942e);
-      color: #000000;
-      padding: 1rem 2rem;
-      border-radius: 50px;
+
+    .contact-block h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
       font-weight: 700;
-      font-size: 1.1rem;
-      text-decoration: none;
-      display: inline-flex;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .contact-block p {
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 0.8rem;
-      transition: 0.25s;
-      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
-    }
-    .linkedin-message-btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.6);
+      gap: 1rem;
+      margin-top: 2rem;
     }
 
+    .contact-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--text);
+    }
+
+    /* --- FOOTER --- */
     footer {
+      padding: 4rem 0;
+      border-top: 1px solid var(--border);
       text-align: center;
-      padding: 1.5rem;
       font-size: 0.8rem;
-      color: #888888;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(4px);
+      color: var(--text-muted);
     }
 
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .hero-text h1 {
-        font-size: 2.5rem;
-        white-space: normal;
-      }
-      .hero-image {
-        transform: translateX(-15px);
-      }
-    }
-    @media (max-width: 820px) {
+    /* --- RESPONSIVE MATRIX --- */
+    @media (max-width: 900px) {
       .nav-links {
         position: fixed;
-        top: 68px;
-        left: -100%;
-        width: 70%;
-        height: calc(100vh - 68px);
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        align-items: center;
-        padding-top: 2rem;
-        gap: 1.8rem;
-        transition: left 0.3s ease;
-        border-right: 1px solid rgba(212, 175, 55, 0.5);
-        z-index: 999;
-      }
-      .nav-links.active {
+        top: 70px;
         left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--bg);
+        flex-direction: column;
+        padding: 3rem;
+        gap: 2rem;
+        border-top: 1px solid var(--border);
+        display: none;
       }
+
+      .nav-links.active {
+        display: flex;
+      }
+
       .menu-btn {
         display: block;
       }
-      .hero-row {
-        flex-direction: column;
-        text-align: center;
+
+      .hero-grid, .project-row, .project-row.reverse, .editorial-grid, .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
       }
-      .hero-image {
-        transform: translateX(0);
-      }
+
       .hero-text {
         text-align: center;
       }
+
       .hero-text p {
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto 2.5rem auto;
       }
+
+      .hero-image {
+        justify-content: center;
+        grid-row: 1;
+      }
+
       .btn-group {
         justify-content: center;
-      }
-      .hero-profile-img {
-        width: 220px;
-        height: 290px;
-      }
-      .hero-text h1 {
-        font-size: 2rem;
-        white-space: normal;
-      }
-      .section-title {
-        font-size: 1.9rem;
-      }
-      section {
-        padding: 3rem 1rem;
-      }
-      .services-grid, .projects-grid, .skills-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      .about-content {
-        flex-direction: column;
-      }
-      .contact-wrapper {
-        flex-direction: column;
-        text-align: center;
-      }
-      .contact-detail {
-        justify-content: center;
-      }
-    }
-    @media (max-width: 480px) {
-      .hero-text h1 {
-        font-size: 1.7rem;
-      }
-      .hero-text .subtitle {
-        font-size: 1.2rem;
-      }
-      .hero-text p {
-        font-size: 0.95rem;
-        padding: 0 0.5rem;
-      }
-      .hero-profile-img {
-        width: 180px;
-        height: 240px;
-      }
-      .btn {
-        padding: 0.5rem 1.2rem;
-        font-size: 0.8rem;
-      }
-      .section-title {
-        font-size: 1.6rem;
-      }
-      .service-card, .project-card, .skill-card {
-        padding: 1.2rem;
-      }
-      .skill-img {
-        height: 100px;
-      }
-      .linkedin-message-btn {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-      }
-    }
-    @media (max-width: 600px) and (orientation: landscape) {
-      .hero {
-        min-height: auto;
-        padding: 3rem 1rem;
-      }
-      .hero-profile-img {
-        width: 150px;
-        height: 200px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Global Particle Canvas Background -->
-  <canvas id="global-particle-canvas"></canvas>
 
+  <!-- Navigation -->
   <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo"> MyPortfolio </div>
+    <div class="container nav-container">
+      <div class="logo">Jerald June Asis</div>
       <button class="menu-btn" id="menuToggle"><i class="fas fa-bars"></i></button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#home">Home</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#about">About Me</a></li>
+        <li><a href="#skills">Tools</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
   <main>
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section id="home" class="hero">
-      <div class="hero-row">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>Designing digital products with structural clarity.</h1>
+          <p>I am a UI/UX designer specializing in system architecture, intuitive workflows, and high-fidelity product interfaces.</p>
+          <div class="btn-group">
+            <a href="#contact" class="btn btn-primary">Let's talk</a>
+            <a href="#projects" class="btn btn-secondary">See work</a>
+          </div>
+        </div>
         <div class="hero-image">
-          <div class="hero-profile-img">
+          <div class="profile-frame">
             <img src="profile_porfolio.png" alt="Jerald June Asis">
           </div>
         </div>
-        <div class="hero-text">
-          <h1>Hi, I'm <span class="highlight">Jerald June Asis</span></h1>
-          <div class="subtitle">UI/UX Designer</div>
-          <p>Passionate about creating intuitive and engaging user experiences. Specialize in transforming ideas into beautifully crafted products.</p>
-          <div class="btn-group">
-            <a href="#contact" class="btn btn-primary">Let's Collaborate →</a>
-            <a href="#projects" class="btn btn-outline">See My Work</a>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <div class="section-title">Capabilities</div>
+        <div class="editorial-grid">
+          <div class="editorial-card">
+            <h3>User Research & Strategy</h3>
+            <p>Deep-dive user interviews, surveys, and competitive analysis. I craft personas, user journeys, and data-driven product strategies that align with your business goals and user needs.</p>
+          </div>
+          <div class="editorial-card">
+            <h3>UI/UX Design</h3>
+            <p>From low-fidelity wireframes to high-fidelity, pixel-perfect interfaces. I design responsive, accessible, and engaging web & mobile experiences that users love.</p>
+          </div>
+          <div class="editorial-card">
+            <h3>Prototyping & Interaction</h3>
+            <p>Interactive clickable prototypes with micro‑animations and smooth transitions. Test your flows before development. Tools: Figma, Framer, Protopie.</p>
+          </div>
+          <div class="editorial-card">
+            <h3>Design Systems & Maintenance</h3>
+            <p>Scalable component libraries, UI kits, and documentation to ensure consistency. I also offer design audits and iterative improvements.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services">
-      <div class="container">
-        <h2 class="section-title">Services</h2>
-        <div class="services-grid">
-          <div class="service-card"><h3>Service 1 – User Research & Strategy</h3><p>Deep-dive user interviews, surveys, and competitive analysis. I craft personas, user journeys, and data-driven product strategies that align with your business goals and user needs.</p></div>
-          <div class="service-card"><h3>Service 2 – UI/UX Design</h3><p>From low-fidelity wireframes to high-fidelity, pixel-perfect interfaces. I design responsive, accessible, and engaging web & mobile experiences that users love.</p></div>
-          <div class="service-card"><h3>Service 3 – Prototyping & Interaction</h3><p>Interactive clickable prototypes with micro‑animations and smooth transitions. Test your flows before development. Tools: Figma, Framer, Protopie.</p></div>
-          <div class="service-card"><h3>Service 4 – Design Systems & Maintenance</h3><p>Scalable component libraries, UI kits, and documentation to ensure consistency. I also offer design audits and iterative improvements.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
+    <!-- Skills -->
     <section id="skills">
       <div class="container">
-        <h2 class="section-title">Tools & Skills</h2>
-        <div class="skills-grid">
-          <div class="skill-card"><div class="skill-img"><img src="figma-logo.png" alt="Figma"></div><h3>Figma</h3><p>Creating high-fidelity prototypes, design systems, and collaborative UI/UX workflows. I use Figma for wireframing, user testing, and handing off pixel-perfect designs.</p></div>
-          <div class="skill-card"><div class="skill-img"><img src="draw.io-logo.png" alt="Draw.io"></div><h3>Draw.io</h3><p>Diagramming user flows, system architecture, and process maps. Essential for visualizing complex logic and communicating ideas to stakeholders.</p></div>
-          <div class="skill-card"><div class="skill-img"><img src="notion-logo.png" alt="Notion"></div><h3>Notion</h3><p>Managing design documentation, project roadmaps, and knowledge bases. I keep all research, personas, and design specs organized in shareable workspaces.</p></div>
-          <div class="skill-card"><div class="skill-img"><img src="canva-logo.jpg" alt="Canva"></div><h3>Canva</h3><p>Quick mockups, presentation decks, and visual assets for social media or pitch decks. Great for fast ideation and client-friendly visuals.</p></div>
-          <div class="skill-card"><div class="skill-img"><img src="framer-logo.png" alt="Framer"></div><h3>Framer</h3><p>Building interactive, code-free prototypes with realistic animations. I use Framer to test micro-interactions and validate UX flows before development.</p></div>
+        <div class="section-title">Environment</div>
+        <div class="tools-display">
+          <div class="tool-item">
+            <img src="figma-logo.png" alt="Figma">
+            <h4>Figma</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Interface engineering & dynamic systems</p>
+          </div>
+          <div class="tool-item">
+            <img src="draw.io-logo.png" alt="Draw.io">
+            <h4>Draw.io</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Logic structures & architecture mapping</p>
+          </div>
+          <div class="tool-item">
+            <img src="notion-logo.png" alt="Notion">
+            <h4>Notion</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Product management & documentation</p>
+          </div>
+          <div class="tool-item">
+            <img src="canva-logo.jpg" alt="Canva">
+            <h4>Canva</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Rapid asset creation & layout mockups</p>
+          </div>
+          <div class="tool-item">
+            <img src="framer-logo.png" alt="Framer">
+            <h4>Framer</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Production web builds & high-fi prototypes</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects -->
     <section id="projects">
       <div class="container">
-        <h2 class="section-title">Recent Projects</h2>
-        <div class="projects-grid">
-          <div class="project-card"><div class="project-img"><img src="incidenreport-logo.png" alt="Incident Report System"></div><h3>CDRRMO – Incident Report System</h3><p>A proposed Incident Report Management System tailored for Panabo City, designed to streamline the logging, tracking, and resolution of local incidents. The system aims to replace manual reporting with a centralized digital platform, enabling real-time updates, improved response coordination, and data-driven insights for city safety.</p><div class="tech-stack"><span>UX Research</span><span>Wireframing</span><span>Dashboard UI</span><span>Figma</span></div></div>
-          <div class="project-card"><div class="project-img"><img src="lendease-logo.png" alt="LendEASE system"></div><h3>LendEASE – Banking Management</h3><p>LendEASE is a streamlined banking management system designed to simplify loan processing, account handling, and financial transactions. It provides an intuitive platform for managing customer accounts, tracking repayments, calculating interest, and generating real-time reports—helping financial institutions reduce manual workload.</p><div class="tech-stack"><span>System Design</span><span>Banking UX</span><span>Prototyping</span><span>Data Viz</span></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section id="education">
-      <div class="container">
-        <h2 class="section-title">Education</h2>
-        <div class="edu-timeline">
-          <div class="edu-item"><h3>🎓 Bachelor of Science in Information Systems</h3><div class="edu-date">Davao del Norte State College | 2024 – 2028</div><p>Focus on human-computer interaction, system analysis, and user-centered design principles.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Me -->
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-          <div class="about-text">
-            <p>Hi, I’m Jerald — a UI/UX designer who believes that great design is invisible. I’m passionate about creating digital products that feel natural, inclusive, and delightful. My journey started with a fascination for how people interact with technology, and today I help turn complex problems into seamless user experiences.</p>
-            <p>I collaborate closely with developers, product managers, and stakeholders to bring ideas to life — from concept to pixel-perfect interface. I love the balance between aesthetics and functionality, and I’m always exploring new design tools and usability patterns.</p>
-            <p><strong>Beyond design:</strong> I’m into sketching, indie games, and learning about behavioral psychology. Let’s build something meaningful together!</p>
-            <div class="personal-info">
-              <p><i class="fas fa-map-marker-alt"></i> Philippines</p>
-              <p><i class="fas fa-envelope"></i> asisjeraldjune@gmail.com</p>
-              <div class="about-social">
-                <a href="https://github.com/shinjin-dev" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/jerald-june-asis-b4763932a" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.instagram.com/shin_jin_pao" target="_blank"><i class="fab fa-instagram"></i></a>
+        <div class="section-title">Selected Case Studies</div>
+        <div class="work-showcase">
+          
+          <div class="project-row">
+            <div class="project-img-wrapper">
+              <img src="incidenreport-logo.png" alt="Incident Report System">
+            </div>
+            <div class="project-info">
+              <h3>CDRRMO Incident Report System</h3>
+              <p>A proposed Incident Report Management System tailored for Panabo City, designed to streamline the logging, tracking, and resolution of local incidents. The system replaces manual reporting with a centralized digital platform, enabling real-time updates and data-driven insights for city safety.</p>
+              <div class="tags">
+                <span>UX Research</span>
+                <span>Wireframing</span>
+                <span>Dashboard UI</span>
+                <span>Figma</span>
               </div>
             </div>
           </div>
-          <div class="about-stats">
-            <div class="stat"><span>🔍 User Research</span><div class="progress-bar"><div class="progress" style="width:90%"></div></div></div>
-            <div class="stat"><span>🎨 UI Design</span><div class="progress-bar"><div class="progress" style="width:92%"></div></div></div>
-            <div class="stat"><span>⚡ Prototyping</span><div class="progress-bar"><div class="progress" style="width:94%"></div></div></div>
-            <div class="stat"><span>🧩 Design Systems</span><div class="progress-bar"><div class="progress" style="width:85%"></div></div></div>
-            <p style="margin-top:1rem;"><i class="fas fa-heart" style="color:#d4af37;"></i> Open for freelance & design collaborations</p>
+
+          <div class="project-row reverse">
+            <div class="project-info">
+              <h3>LendEASE Banking Management</h3>
+              <p>LendEASE is a streamlined banking management system designed to simplify loan processing, account handling, and financial transactions. It provides an intuitive platform for managing customer accounts, tracking repayments, calculating interest, and generating real-time reports.</p>
+              <div class="tags">
+                <span>System Design</span>
+                <span>Banking UX</span>
+                <span>Prototyping</span>
+                <span>Data Viz</span>
+              </div>
+            </div>
+            <div class="project-img-wrapper">
+              <img src="lendease-logo.png" alt="LendEASE system">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Profile Split -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-bio">
+          <div class="section-title">Profile</div>
+          <p>Hi, I’m Jerald — a UI/UX designer who believes that great design is invisible. I’m passionate about creating digital products that feel natural, inclusive, and delightful. My journey started with a fascination for how people interact with technology, and today I help turn complex problems into seamless user experiences.</p>
+          <p>I collaborate closely with developers, product managers, and stakeholders to bring ideas to life — from concept to pixel-perfect interface.</p>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2rem;">🎓 Bachelor of Science in Information Systems<br>Davao del Norte State College | 2024 – 2028</p>
+          
+          <div class="social-links">
+            <a href="https://github.com/shinjin-dev" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/jerald-june-asis-b4763932a" target="_blank">LinkedIn</a>
+            <a href="https://www.instagram.com/shin_jin_pao" target="_blank">Instagram</a>
+          </div>
+        </div>
+
+        <div class="skills-bars">
+          <div class="section-title">Focus Area</div>
+          <div class="bar-item">
+            <div class="bar-label"><span>User Research</span><span>90%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>UI Design</span><span>92%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 92%;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>Prototyping</span><span>94%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 94%;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>Design Systems</span><span>85%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact - LinkedIn redirect -->
+    <!-- Contact -->
     <section id="contact">
       <div class="container">
-        <h2 class="section-title">Let’s Connect</h2>
-        <div class="contact-wrapper">
-          <div class="contact-info">
-            <h3>Get in touch</h3>
-            <p>Have a project in mind? Let's create something great together.</p>
-            <div class="contact-detail"><i class="fas fa-envelope"></i> <span>asisjeraldjune@gmail.com</span></div>
-            <div class="contact-detail"><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/jerald-june-asis-b4763932a" target="_blank">linkedin.com/in/jerald-june-asis</a></div>
-            <div class="contact-detail"><i class="fab fa-github"></i> <a href="https://github.com/shinjin-dev" target="_blank">github.com/shinjin-dev</a></div>
-            <div class="contact-detail"><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/shin_jin_pao" target="_blank">instagram.com/shin_jin_pao</a></div>
-          </div>
-          <div class="contact-action">
-            <a href="https://www.linkedin.com/in/jerald-june-asis-b4763932a" target="_blank" class="linkedin-message-btn">
-              <i class="fab fa-linkedin"></i> Send me a message on LinkedIn
-            </a>
-            <p style="margin-top: 1rem; font-size: 0.85rem; color: #aaaaaa;">Click the button → you'll be redirected to my LinkedIn profile where you can message me directly.</p>
+        <div class="contact-block">
+          <h2>Let's build something meaningful.</h2>
+          <p>Open for freelance contracts, design collaborations, and full-time inquiries.</p>
+          <a href="https://www.linkedin.com/in/jerald-june-asis-b4763932a" target="_blank" class="btn btn-primary">Send message via LinkedIn</a>
+          
+          <div class="contact-methods">
+            <span class="contact-link">asisjeraldjune@gmail.com</span>
+            <span class="contact-link">Panabo City, Philippines</span>
           </div>
         </div>
       </div>
@@ -765,20 +642,33 @@
   </main>
 
   <footer>
-    <p> © 2026 Jerald June Asis </p>
+    <div class="container">
+      <p>© 2026 Jerald June Asis. Focused on performance and function.</p>
+    </div>
   </footer>
 
   <script>
-    // Mobile menu toggle
+    // Responsive Navbar Logic
     const menuBtn = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
+    
     if(menuBtn) {
-      menuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = menuBtn.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+      });
     }
+
     document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('active'));
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuBtn.querySelector('i').className = 'fas fa-bars';
+      });
     });
-    // Smooth scroll
+
+    // Custom Scroll Offset Configuration
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
@@ -786,113 +676,698 @@
           const targetElement = document.querySelector(targetId);
           if(targetElement) {
             e.preventDefault();
-            const offsetTop = targetElement.offsetTop - 80;
+            const offsetTop = targetElement.offsetTop - 70;
             window.scrollTo({ top: offsetTop, behavior: 'smooth' });
           }
         }
       });
     });
-
-    // Global particle network - gold and white particles
-    const canvas = document.getElementById('global-particle-canvas');
-    if (canvas) {
-      let ctx = canvas.getContext('2d');
-      let particles = [];
-      let particleCount = 110;
-      let connectionDistance = 150;
-      let mouse = { x: null, y: null };
-
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-
-      class Particle {
-        constructor() {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-          this.vx = (Math.random() - 0.5) * 0.4;
-          this.vy = (Math.random() - 0.5) * 0.3;
-          this.size = Math.random() * 2 + 1.2;
-          // random between gold and white
-          this.colorType = Math.random() > 0.6 ? 'gold' : 'white';
-        }
-        update() {
-          this.x += this.vx;
-          this.y += this.vy;
-          if (this.x < 0) this.x = canvas.width;
-          if (this.x > canvas.width) this.x = 0;
-          if (this.y < 0) this.y = canvas.height;
-          if (this.y > canvas.height) this.y = 0;
-        }
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          let color = this.colorType === 'gold' ? 'rgba(212, 175, 55, ' : 'rgba(255, 255, 255, ';
-          ctx.fillStyle = color + (Math.random() * 0.5 + 0.2) + ')';
-          ctx.fill();
-        }
-      }
-
-      function initParticles() {
-        particles = [];
-        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-      }
-
-      function drawLines() {
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const distance = Math.hypot(dx, dy);
-            if (distance < connectionDistance) {
-              const opacity = (1 - distance / connectionDistance) * 0.2;
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(212, 175, 55, ${opacity})`;
-              ctx.lineWidth = 0.6;
-              ctx.stroke();
-            }
-          }
-        }
-        if (mouse.x && mouse.y) {
-          for (let p of particles) {
-            const dx = p.x - mouse.x;
-            const dy = p.y - mouse.y;
-            const dist = Math.hypot(dx, dy);
-            if (dist < connectionDistance) {
-              const op = (1 - dist / connectionDistance) * 0.3;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(mouse.x, mouse.y);
-              ctx.strokeStyle = `rgba(212, 175, 55, ${op})`;
-              ctx.lineWidth = 0.8;
-              ctx.stroke();
-            }
-          }
-        }
-      }
-
-      function animate() {
-        if (!ctx) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let p of particles) { p.update(); p.draw(); }
-        drawLines();
-        requestAnimationFrame(animate);
-      }
-
-      window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
-      window.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-      });
-      window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-      resizeCanvas();
-      initParticles();
-      animate();
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Jerald June Asis | UI/UX Designer Portfolio</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0A0A0A;
+      --text: #F4F4F5;
+      --text-muted: #71717A;
+      --border: rgba(255, 255, 255, 0.07);
+      --accent: #E5A93C; 
     }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* --- NAVIGATION --- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* --- HERO --- */
+    .hero {
+      padding: 12rem 0 6rem 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .profile-frame {
+      width: 100%;
+      max-width: 300px;
+      height: 380px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #141414;
+    }
+
+    .profile-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* --- BUTTONS --- */
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background-color: var(--text);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background-color: #ffffff;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    /* --- SECTIONS --- */
+    section {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 4rem;
+      font-weight: 600;
+    }
+
+    /* --- SERVICES & SKILLS LISTS --- */
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem 3rem;
+    }
+
+    .editorial-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .editorial-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Tool Icons / Images Row */
+    .tools-display {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 2rem;
+    }
+
+    .tool-item {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .tool-item img {
+      max-height: 32px;
+      max-width: 32px;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(150%);
+      opacity: 0.6;
+    }
+
+    .tool-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* --- WORK / PROJECTS --- */
+    .work-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .project-row.reverse {
+      grid-template-columns: 1fr 1.2fr;
+    }
+
+    .project-img-wrapper {
+      background: #141416;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .project-img-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .project-info h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .project-info p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tags span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+    }
+
+    /* --- ABOUT & STATS --- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 4rem;
+    }
+
+    .about-bio p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .social-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--text);
+    }
+
+    .skills-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .bar-bg {
+      background: var(--border);
+      height: 2px;
+      width: 100%;
+    }
+
+    .bar-fill {
+      background: var(--text);
+      height: 100%;
+    }
+
+    /* --- CONTACT --- */
+    .contact-block {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-block h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .contact-block p {
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .contact-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--text);
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      padding: 4rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* --- RESPONSIVE MATRIX --- */
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--bg);
+        flex-direction: column;
+        padding: 3rem;
+        gap: 2rem;
+        border-top: 1px solid var(--border);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero-grid, .project-row, .project-row.reverse, .editorial-grid, .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .hero-text p {
+        margin: 0 auto 2.5rem auto;
+      }
+
+      .hero-image {
+        justify-content: center;
+        grid-row: 1;
+      }
+
+      .btn-group {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <div class="logo">Jerald June Asis</div>
+      <button class="menu-btn" id="menuToggle"><i class="fas fa-bars"></i></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#skills">Tools</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>Designing digital products with structural clarity.</h1>
+          <p>I am a UI/UX designer specializing in system architecture, intuitive workflows, and high-fidelity product interfaces.</p>
+          <div class="btn-group">
+            <a href="#contact" class="btn btn-primary">Let's talk</a>
+            <a href="#projects" class="btn btn-secondary">See work</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="profile-frame">
+            <img src="profile_porfolio.png" alt="Jerald June Asis">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <div class="section-title">Capabilities</div>
+        <div class="editorial-grid">
+          <div class="editorial-card">
+            <h3>User Research & Strategy</h3>
+            <p>Deep-dive user interviews, surveys, and competitive analysis. I craft personas, user journeys, and data-driven product strategies that align with your business goals and user needs.</p>
+          </div>
+          <div class="editorial-card">
+            <h3>UI/UX Design</h3>
+            <p>From low-fidelity wireframes to high-fidelity, pixel-perfect interfaces. I design responsive, accessible, and engaging web & mobile experiences that users love.</p>
+          </div>
+          <div class="editorial-card">
+            <h3>Prototyping & Interaction</h3>
+            <p>Interactive clickable prototypes with micro‑animations and smooth transitions. Test your flows before development. Tools: Figma, Framer, Protopie.</p>
+          </div>
+          <div class="editorial-card">
+            <h3>Design Systems & Maintenance</h3>
+            <p>Scalable component libraries, UI kits, and documentation to ensure consistency. I also offer design audits and iterative improvements.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-title">Environment</div>
+        <div class="tools-display">
+          <div class="tool-item">
+            <img src="figma-logo.png" alt="Figma">
+            <h4>Figma</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Interface engineering & dynamic systems</p>
+          </div>
+          <div class="tool-item">
+            <img src="draw.io-logo.png" alt="Draw.io">
+            <h4>Draw.io</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Logic structures & architecture mapping</p>
+          </div>
+          <div class="tool-item">
+            <img src="notion-logo.png" alt="Notion">
+            <h4>Notion</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Product management & documentation</p>
+          </div>
+          <div class="tool-item">
+            <img src="canva-logo.jpg" alt="Canva">
+            <h4>Canva</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Rapid asset creation & layout mockups</p>
+          </div>
+          <div class="tool-item">
+            <img src="framer-logo.png" alt="Framer">
+            <h4>Framer</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Production web builds & high-fi prototypes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-title">Selected Case Studies</div>
+        <div class="work-showcase">
+          
+          <div class="project-row">
+            <div class="project-img-wrapper">
+              <img src="incidenreport-logo.png" alt="Incident Report System">
+            </div>
+            <div class="project-info">
+              <h3>CDRRMO Incident Report System</h3>
+              <p>A proposed Incident Report Management System tailored for Panabo City, designed to streamline the logging, tracking, and resolution of local incidents. The system replaces manual reporting with a centralized digital platform, enabling real-time updates and data-driven insights for city safety.</p>
+              <div class="tags">
+                <span>UX Research</span>
+                <span>Wireframing</span>
+                <span>Dashboard UI</span>
+                <span>Figma</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-row reverse">
+            <div class="project-info">
+              <h3>LendEASE Banking Management</h3>
+              <p>LendEASE is a streamlined banking management system designed to simplify loan processing, account handling, and financial transactions. It provides an intuitive platform for managing customer accounts, tracking repayments, calculating interest, and generating real-time reports.</p>
+              <div class="tags">
+                <span>System Design</span>
+                <span>Banking UX</span>
+                <span>Prototyping</span>
+                <span>Data Viz</span>
+              </div>
+            </div>
+            <div class="project-img-wrapper">
+              <img src="lendease-logo.png" alt="LendEASE system">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Profile Split -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-bio">
+          <div class="section-title">Profile</div>
+          <p>Hi, I’m Jerald — a UI/UX designer who believes that great design is invisible. I’m passionate about creating digital products that feel natural, inclusive, and delightful. My journey started with a fascination for how people interact with technology, and today I help turn complex problems into seamless user experiences.</p>
+          <p>I collaborate closely with developers, product managers, and stakeholders to bring ideas to life — from concept to pixel-perfect interface.</p>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2rem;">🎓 Bachelor of Science in Information Systems<br>Davao del Norte State College | 2024 – 2028</p>
+          
+          <div class="social-links">
+            <a href="https://github.com/shinjin-dev" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/jerald-june-asis-b4763932a" target="_blank">LinkedIn</a>
+            <a href="https://www.instagram.com/shin_jin_pao" target="_blank">Instagram</a>
+          </div>
+        </div>
+
+        <div class="skills-bars">
+          <div class="section-title">Focus Area</div>
+          <div class="bar-item">
+            <div class="bar-label"><span>User Research</span><span>90%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>UI Design</span><span>92%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 92%;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>Prototyping</span><span>94%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 94%;"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label"><span>Design Systems</span><span>85%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-block">
+          <h2>Let's build something meaningful.</h2>
+          <p>Open for freelance contracts, design collaborations, and full-time inquiries.</p>
+          <a href="https://www.linkedin.com/in/jerald-june-asis-b4763932a" target="_blank" class="btn btn-primary">Send message via LinkedIn</a>
+          
+          <div class="contact-methods">
+            <span class="contact-link">asisjeraldjune@gmail.com</span>
+            <span class="contact-link">Panabo City, Philippines</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Jerald June Asis. Focused on performance and function.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Responsive Navbar Logic
+    const menuBtn = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    if(menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = menuBtn.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+      });
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuBtn.querySelector('i').className = 'fas fa-bars';
+      });
+    });
+
+    // Custom Scroll Offset Configuration
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if(targetId && targetId !== '#') {
+          const targetElement = document.querySelector(targetId);
+          if(targetElement) {
+            e.preventDefault();
+            const offsetTop = targetElement.offsetTop - 70;
+            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+          }
+        }
+      });
+    });
   </script>
 </body>
 </html>
